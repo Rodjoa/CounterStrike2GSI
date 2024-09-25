@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\build\CounterStrike2GSI\CounterStrike2GSI.csproj" />
+    <ProjectReference Include="C:\Users\usuario\Desktop\Ramos_2024-2\Seminario_Telematica\IA_Project\CounterStrike2GSI\CounterStrike2GSI\CounterStrike2GSI.csproj" />
   </ItemGroup>
 
 </Project>
