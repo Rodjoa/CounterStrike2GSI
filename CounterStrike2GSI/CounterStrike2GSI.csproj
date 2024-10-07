@@ -1,14 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF> <!-- Solo si no se está usando WPF -->
+    <UseWindowsForms>true</UseWindowsForms> <!-- Solo si no se está usando Windows Forms -->
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>  <!-- Añade esta línea -->
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="InputSimulator" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="WindowsInput" />
   </ItemGroup>
 
 </Project>

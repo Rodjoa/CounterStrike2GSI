@@ -1,13 +1,22 @@
 ﻿using CounterStrike2GSI;
 using CounterStrike2GSI.EventMessages;
 
+//Agegamos las siguientes referencias para introducir comandos
+using WindowsInput; // Referencia a biblioteca WindowsInput
+using WindowsInput.Native; // Se necesita esta para usar las teclas
+using System.Threading;//  poder utilizar la funcion Thread.Sleep() en el código, permite pausar la ejecución del programa entre las acciones, sirve para el bucle que escucha el input del teclado
+
+
+
 namespace CounterStrike2GSI_Example_program
 {
     class Program
     {
         static GameStateListener? _gsl;
+        //static CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private static InputSimulator _inputSimulator = new InputSimulator();
 
-        static void Main(string[] args)
+        //static async Task Main(string[] args) //antes era static void Main(string[] args)
         {
             _gsl = new GameStateListener(4000);
 
@@ -37,7 +46,13 @@ namespace CounterStrike2GSI_Example_program
             }
             Console.WriteLine("Listening for game integration calls...");
 
+
+            //Aqui llamamos a la funcion para movernos hacia delante hasta apretar W
+           //await MoveForwardAsync(_cancellationTokenSource.Token);
+
+
             Console.WriteLine("Press ESC to quit");
+
             do
             {
                 while (!Console.KeyAvailable)
@@ -46,6 +61,26 @@ namespace CounterStrike2GSI_Example_program
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
+
+
+
+        //Creamos funcion asincrona para moverse hacia delante (press W)
+        /*public async Task MoveForwardAsync(CancellationToken token)
+        {
+            
+            await Task.Run(() =>
+            {
+
+                while (!token.IsCancellationRequested)
+                {
+                    
+                    // Simula la pulsación de la tecla 'W' para avanzar
+                    _inputSimulator.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+                    // Espera un pequeño intervalo antes de volver a pulsar, ajustable
+                    Thread.Sleep(300); 
+                 }
+            });
+        }*/
 
         private static void OnNewGameState(GameState gamestate)
         {
